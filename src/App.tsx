@@ -1,20 +1,17 @@
-import ArticleDetails from "./components/ArticleDetails";
 import { Article } from "./interfaces/Article";
+import LatestArticleContainer from "./containers/LatestArticleContainer";
+import ArticleListContainer from "./containers/ArticleListContainer";
 
 const App = ({ articles }: { articles: Article[] | null }) => {
-  console.log("log articles", articles);
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="py-8">
-        <h1 className="text-4xl fontz-bold text-center mb-8">The News</h1>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {articles &&
-            articles.map((article, index) => (
-              <ArticleDetails key={index} article={article} />
-            ))}
+    <main>
+      <section className="bg-gray-100 py-12">
+        <div className="container mx-auto ">
+          <LatestArticleContainer articles={articles} />
+          <ArticleListContainer articles={articles} />
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

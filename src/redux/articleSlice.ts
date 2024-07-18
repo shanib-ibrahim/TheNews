@@ -5,7 +5,7 @@ import { Article } from '../interfaces/Article'
 
 export interface ArticleState {
     data: Article[] | null,
-    filteredArticles: Article[],
+    filteredBySection: object,
     latestArticle: Article | null;
     section:string[],
     loading:boolean,
@@ -15,9 +15,9 @@ export interface ArticleState {
 const initialState: ArticleState = {
   data:[],
   section:[],
-  filteredArticles: [],
+  filteredBySection: {},
   latestArticle:null,
-  loading:false,
+  loading:true,
   error:""
 }
 
@@ -34,14 +34,18 @@ export const getArticles = createAsyncThunk<Article[], void, { rejectValue: stri
   );
 
 export const articleSlice = createSlice({
-  name: 'counter',
+  name: 'article',
   initialState,
   reducers: {
-    filterArticlesBySection: (state, action) => {
-        const section = action.payload; 
-        state.filteredArticles = state.data?state.data.filter(article => article.section === section):[];
+    filteredBySection: (state,action:PayloadAction<Article[]>)=>{
+      let filteredArticles =  {}
+     state.section.forEach(item=>{
+      filteredArticles={...filteredArticles,[`${item}`]:action.payload.filter(data=>data.section===item)}
+     })
+     state.filteredBySection=filteredArticles;
+     console.log('log section data',filteredArticles);
     },
-    findLatestArticle:(state,action)=>{
+    findLatestArticle:(state,action:PayloadAction<Article[]>)=>{
     const latestArticle = action.payload?action.payload.reduce((latest, article) => {
         const latestUpdated = new Date(latest.updated);
         const updatedDate = new Date(article.updated);
@@ -70,6 +74,6 @@ export const articleSlice = createSlice({
   }
 })
 
-export const { findLatestArticle,filterArticlesBySection} = articleSlice.actions
+export const {filteredBySection, findLatestArticle} = articleSlice.actions;
 
 export default articleSlice.reducer
