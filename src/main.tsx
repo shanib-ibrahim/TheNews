@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import AppContainer from "./containers/AppContainer";
 import HeaderContainer from "./containers/HeaderContainer";
 import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/Footer";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <HeaderContainer />
         <AppContainer />
+        <Footer />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

@@ -9,7 +9,7 @@ const LatestArticle = ({ latestNews }: { latestNews: Article }) => {
       <div className="flex flex-col mx-4 lg:flex-row justify-around  rounded-lg  overflow-hidden mb-8">
         <img
           src={
-            latestNews.media
+            latestNews?.media && latestNews.media.length
               ? latestNews.media[0]["media-metadata"][2]?.url
               : ""
           }

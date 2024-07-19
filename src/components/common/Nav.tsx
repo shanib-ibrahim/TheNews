@@ -4,9 +4,14 @@ import { useAppSelector } from "../../redux/hooks";
 interface NavProps {
   containerStyles: string;
   linkStyles: string;
+  activeSection: string;
 }
 
-const Nav: React.FC<NavProps> = ({ containerStyles, linkStyles }) => {
+const Nav: React.FC<NavProps> = ({
+  containerStyles,
+  linkStyles,
+  activeSection,
+}) => {
   const section = useAppSelector((state) => state.article.section);
   const location = useLocation();
   const links = section.map((item) => ({ path: `/#${item}`, name: item }));
@@ -19,8 +24,9 @@ const Nav: React.FC<NavProps> = ({ containerStyles, linkStyles }) => {
         return (
           <Link
             className={`uppercase ${linkStyles} ${
+              link.path.replace(/[ .]/g, "") === `/#${activeSection}` ||
               location.hash === link.path.replace(/[ .]/g, "")
-                ? "bg-primary"
+                ? "text-primary"
                 : ""
             }`}
             key={index}

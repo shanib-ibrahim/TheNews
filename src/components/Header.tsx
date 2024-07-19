@@ -2,10 +2,28 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { MobileNav } from "./common/MobileNav";
 import Nav from "./common/Nav";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Header = ({ header }: { header: boolean }) => {
   const location = useLocation();
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handScroll = () => {
+      const sections = document.querySelectorAll("section[id]");
+      let currentSection = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 220) {
+          currentSection = section.getAttribute("id");
+        }
+      });
+      setActiveSection(currentSection);
+    };
+    handScroll();
+    window.addEventListener("scroll", handScroll);
+    return () => window.removeEventListener("scroll", handScroll);
+  }, []);
 
   useEffect(() => {
     if (location.hash) {
@@ -20,7 +38,7 @@ const Header = ({ header }: { header: boolean }) => {
         });
       }
     }
-  });
+  }, [location]);
 
   return (
     <header
@@ -37,6 +55,7 @@ const Header = ({ header }: { header: boolean }) => {
           <Nav
             containerStyles="hidden xl:flex  gap-x-8 item-center lg:self-center"
             linkStyles="relative hover:text-primary transition-all"
+            activeSection={activeSection}
           />
 
           <div className={`flex items-center gap-x-2 xl:hidden  `}>
