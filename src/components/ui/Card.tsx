@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { Article } from "../../interfaces/Article";
 
-export function CardDefault({ item }: { item: Article | [] }) {
+export function CardDefault({ item }: { item: Article }) {
   return (
     <Card className="mt-6 w-100 mx-4 ">
       <CardHeader color="blue-gray" className="relative h-56">
