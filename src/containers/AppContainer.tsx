@@ -17,12 +17,15 @@ const AppContainer = () => {
 
   return loading ? (
     <div className="flex items-center justify-center h-screen">
-      <Spinner />
+      <Spinner
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      />
     </div>
   ) : (
     <Routes>
       <Route path="/" element={<App articles={articles} />} />
-      <Route path="/details" element={<ArticleDetails />} />
+      <Route path="/details" element={<ArticleDetails articles={articles} />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

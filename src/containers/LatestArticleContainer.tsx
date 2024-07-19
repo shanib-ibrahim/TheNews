@@ -6,7 +6,7 @@ import { findLatestArticle } from "../redux/articleSlice";
 import LatestArticleShimmer from "../components/ui/shimmer-ui/LatestArticleShimmer";
 
 interface LatestArticleInterface {
-  articles: Article[];
+  articles: Article[] | null;
 }
 
 const LatestArticleContainer: React.FC<LatestArticleInterface> = ({
@@ -14,15 +14,16 @@ const LatestArticleContainer: React.FC<LatestArticleInterface> = ({
 }) => {
   const dispatch = useAppDispatch();
   const latestNews = useAppSelector((state) => state.article.latestArticle);
+  const newsArticles = articles ? articles : [];
 
   useEffect(() => {
-    dispatch(findLatestArticle(articles));
-  }, [articles]);
+    dispatch(findLatestArticle(newsArticles));
+  }, [newsArticles]);
 
   return !latestNews ? (
     <LatestArticleShimmer />
   ) : (
-    <LatestArticle latestNews={articles[0]} />
+    <LatestArticle latestNews={newsArticles[0]} />
   );
 };
 

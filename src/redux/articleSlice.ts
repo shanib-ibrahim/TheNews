@@ -5,7 +5,7 @@ import { Article } from '../interfaces/Article'
 
 export interface ArticleState {
     data: Article[] | null,
-    filteredBySection: object,
+    filteredBySection: { [key: string]: Article[] },
     latestArticle: Article | null;
     section:string[],
     loading:boolean,

@@ -6,7 +6,7 @@ import { Article } from "../interfaces/Article";
 import { Spinner } from "@material-tailwind/react";
 
 interface ArticleListInterface {
-  articles: Article[];
+  articles: Article[] | null;
 }
 
 const ArticleListContainer: React.FC<ArticleListInterface> = ({ articles }) => {
@@ -16,14 +16,18 @@ const ArticleListContainer: React.FC<ArticleListInterface> = ({ articles }) => {
   );
   const section = useAppSelector((state) => state.article.section);
   const loading = useAppSelector((state) => state.article.loading);
+  const newsArticles = articles ? articles : [];
 
   useEffect(() => {
-    dispatch(filteredBySection(articles));
-  }, [articles]);
+    dispatch(filteredBySection(newsArticles));
+  }, [newsArticles]);
 
   return loading || Object.keys(filteredBySectionArticle).length === 0 ? (
     <div className="flex items-center justify-center h-screen">
-      <Spinner />
+      <Spinner
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      />
     </div>
   ) : (
     <ArticleList

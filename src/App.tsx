@@ -2,7 +2,11 @@ import { Article } from "./interfaces/Article";
 import LatestArticleContainer from "./containers/LatestArticleContainer";
 import ArticleListContainer from "./containers/ArticleListContainer";
 
-const App = ({ articles }: { articles: Article[] | null }) => {
+interface AppInterface {
+  articles: Article[] | null;
+}
+
+const App: React.FC<AppInterface> = ({ articles }) => {
   return (
     <main>
       <section className="bg-gray-100 py-12">
