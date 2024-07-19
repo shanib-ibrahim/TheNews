@@ -10,10 +10,12 @@ import { Article } from "../../interfaces/Article";
 
 export function CardDefault({ item }: { item: Article | [] }) {
   return (
-    <Card className="mt-6 w-100 ">
+    <Card className="mt-6 w-100 mx-4 ">
       <CardHeader color="blue-gray" className="relative h-56">
         <img
-          src={item.media ? item.media[0]["media-metadata"][2]?.url : ""}
+          src={
+            item?.media.length ? item.media[0]["media-metadata"][2]?.url : ""
+          }
           alt={item.title}
         />
       </CardHeader>

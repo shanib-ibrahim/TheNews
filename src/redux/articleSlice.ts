@@ -42,8 +42,7 @@ export const articleSlice = createSlice({
      state.section.forEach(item=>{
       filteredArticles={...filteredArticles,[`${item}`]:action.payload.filter(data=>data.section===item)}
      })
-     state.filteredBySection=filteredArticles;
-     console.log('log section data',filteredArticles);
+     state.filteredBySection=filteredArticles;    
     },
     findLatestArticle:(state,action:PayloadAction<Article[]>)=>{
     const latestArticle = action.payload?action.payload.reduce((latest, article) => {

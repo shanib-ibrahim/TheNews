@@ -9,16 +9,18 @@ import {
 } from "@material-tailwind/react";
 import { AlignJustify } from "lucide-react";
 import { useAppSelector } from "../../redux/hooks";
+import { Link, useLocation } from "react-router-dom";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
-
+  const location = useLocation();
   const section = useAppSelector((state) => state.article.section);
-  const links = section.map((item) => ({ path: `/${item}`, name: item }));
 
-  links.unshift({ path: "/", name: "home" });
+  const links = section.map((item) => ({ path: `/#${item}`, name: item }));
+
+  links.unshift({ path: "/#home", name: "home" });
 
   return (
     <React.Fragment>
@@ -26,7 +28,9 @@ export function MobileNav() {
       <Drawer open={open} onClose={closeDrawer} placement="right">
         <div className="mb-2 flex items-center justify-between p-4">
           <Typography variant="h5" color="blue-gray">
-            <img src={logo} alt="Logo" height={120} width={120} />
+            <Link to="/#home">
+              <img src={logo} alt="Logo" height={120} width={120} />
+            </Link>
           </Typography>
           <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
             <svg
@@ -46,9 +50,19 @@ export function MobileNav() {
           </IconButton>
         </div>
         <List>
-          {links.map((link) => (
-            <ListItem className="uppercase" onClick={closeDrawer}>
-              {link.name}
+          {links.map((link, index) => (
+            <ListItem onClick={closeDrawer}>
+              <Link
+                className={`uppercase  ${
+                  location.hash === link.path.replace(/[/ .]/g, "")
+                    ? "text-primary"
+                    : ""
+                }`}
+                key={index}
+                to={link.path.replace(/[ .]/g, "")}
+              >
+                {link.name}
+              </Link>
             </ListItem>
           ))}
         </List>

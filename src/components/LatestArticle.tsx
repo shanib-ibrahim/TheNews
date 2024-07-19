@@ -2,9 +2,11 @@ import { Article } from "../interfaces/Article";
 
 const LatestArticle = ({ latestNews }: { latestNews: Article }) => {
   return (
-    <>
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6">Latest News</h2>
-      <div className="flex justify-around  rounded-lg  overflow-hidden mb-8">
+    <section id="home">
+      <h2 className="text-3xl  mx-4 font-semibold text-gray-800 mb-6">
+        Latest News
+      </h2>
+      <div className="flex flex-col mx-4 lg:flex-row justify-around  rounded-lg  overflow-hidden mb-8">
         <img
           src={
             latestNews.media
@@ -29,7 +31,7 @@ const LatestArticle = ({ latestNews }: { latestNews: Article }) => {
           </a>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

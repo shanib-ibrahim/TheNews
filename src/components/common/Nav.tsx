@@ -4,30 +4,30 @@ import { useAppSelector } from "../../redux/hooks";
 interface NavProps {
   containerStyles: string;
   linkStyles: string;
-  underlineStyles?: string;
 }
 
-const Nav: React.FC<NavProps> = ({
-  containerStyles,
-  linkStyles,
-  underlineStyles,
-}) => {
+const Nav: React.FC<NavProps> = ({ containerStyles, linkStyles }) => {
   const section = useAppSelector((state) => state.article.section);
+  const location = useLocation();
+  const links = section.map((item) => ({ path: `/#${item}`, name: item }));
 
-  const links = section.map((item) => ({ path: `/${item}`, name: item }));
-
-  links.unshift({ path: "/", name: "home" });
+  links.unshift({ path: "/#home", name: "home" });
 
   return (
     <nav className={`${containerStyles}`}>
       {links.map((link, index) => {
         return (
-          <a href={link.path} key={index} className={`uppercase ${linkStyles}`}>
-            {/* {link.path === location.pathname && (
-              <span className={`${underlineStyles}`} />
-            )} */}
+          <Link
+            className={`uppercase ${linkStyles} ${
+              location.hash === link.path.replace(/[ .]/g, "")
+                ? "bg-primary"
+                : ""
+            }`}
+            key={index}
+            to={link.path.replace(/[ .]/g, "")}
+          >
             {link.name}
-          </a>
+          </Link>
         );
       })}
     </nav>

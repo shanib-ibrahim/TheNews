@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { getArticles } from "../redux/articleSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Spinner } from "@material-tailwind/react";
 import App from "../App";
+import ArticleDetails from "../components/ArticleDetails";
 
 const AppContainer = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +20,11 @@ const AppContainer = () => {
       <Spinner />
     </div>
   ) : (
-    <App articles={articles} />
+    <Routes>
+      <Route path="/" element={<App articles={articles} />} />
+      <Route path="/details" element={<ArticleDetails />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 };
 

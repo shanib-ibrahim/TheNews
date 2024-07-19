@@ -1,8 +1,27 @@
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { MobileNav } from "./common/MobileNav";
 import Nav from "./common/Nav";
+import { useEffect } from "react";
 
 const Header = ({ header }: { header: boolean }) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        const offset = 150; // Adjust this value as per your layout
+        const elementPosition =
+          element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: "smooth",
+        });
+      }
+    }
+  });
+
   return (
     <header
       className={`${
@@ -10,16 +29,17 @@ const Header = ({ header }: { header: boolean }) => {
       } sticky top-0 z-30 transition-all`}
     >
       <div className="container mx-auto ">
-        <div className="flex item-center justify-between lg:flex-col lg:gap-y-2">
-          <img src={logo} alt="Logo" height={120} width={120} />
+        <div className="flex item-center justify-between xl:flex-col lg:gap-y-2">
+          <Link to="/#home">
+            <img src={logo} alt="Logo" height={120} width={120} />
+          </Link>
 
           <Nav
-            containerStyles="hidden xl:flex lg:flex  gap-x-8 item-center lg:self-center"
+            containerStyles="hidden xl:flex  gap-x-8 item-center lg:self-center"
             linkStyles="relative hover:text-primary transition-all"
-            underlineStyles="absolute left-0 top-full h-[2px] bg-primary w-full"
           />
 
-          <div className={`flex items-center gap-x-2 xl:hidden lg:hidden `}>
+          <div className={`flex items-center gap-x-2 xl:hidden  `}>
             <MobileNav />
           </div>
         </div>
