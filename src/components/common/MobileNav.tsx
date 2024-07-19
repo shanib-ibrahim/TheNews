@@ -25,14 +25,34 @@ export function MobileNav() {
   return (
     <React.Fragment>
       <AlignJustify className="cursor-pointer" onClick={openDrawer} />
-      <Drawer open={open} onClose={closeDrawer} placement="right">
+      <Drawer
+        open={open}
+        onClose={closeDrawer}
+        placement="right"
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+        placeholder={undefined}
+      >
         <div className="mb-2 flex items-center justify-between p-4">
-          <Typography variant="h5" color="blue-gray">
+          <Typography
+            variant="h5"
+            color="blue-gray"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <Link to="/#home">
               <img src={logo} alt="Logo" height={120} width={120} />
             </Link>
           </Typography>
-          <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
+          <IconButton
+            variant="text"
+            color="blue-gray"
+            onClick={closeDrawer}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -49,9 +69,18 @@ export function MobileNav() {
             </svg>
           </IconButton>
         </div>
-        <List>
+        <List
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           {links.map((link, index) => (
-            <ListItem onClick={closeDrawer}>
+            <ListItem
+              onClick={closeDrawer}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               <Link
                 className={`uppercase  ${
                   location.hash === link.path.replace(/[/ .]/g, "")
