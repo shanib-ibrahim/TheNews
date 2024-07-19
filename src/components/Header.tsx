@@ -6,16 +6,17 @@ import { useEffect, useState } from "react";
 
 const Header = ({ header }: { header: boolean }) => {
   const location = useLocation();
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     const handScroll = () => {
       const sections = document.querySelectorAll("section[id]");
       let currentSection = "";
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
+        const sectionElement = section as HTMLElement;
+        const sectionTop = sectionElement.offsetTop;
         if (window.scrollY >= sectionTop - 220) {
-          currentSection = section.getAttribute("id");
+          currentSection = section.getAttribute("id") || "";
         }
       });
       setActiveSection(currentSection);
