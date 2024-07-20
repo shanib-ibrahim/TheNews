@@ -6,6 +6,7 @@ import { Article } from '../interfaces/Article'
 export interface ArticleState {
     data: Article[] | null,
     filteredBySection: { [key: string]: Article[] },
+    filteredArticleById:Article | null;
     latestArticle: Article | null;
     section:string[],
     loading:boolean,
@@ -16,6 +17,7 @@ const initialState: ArticleState = {
   data:[],
   section:[],
   filteredBySection: {},
+  filteredArticleById:null,
   latestArticle:null,
   loading:true,
   error:""
@@ -51,6 +53,10 @@ export const articleSlice = createSlice({
         return (updatedDate > latestUpdated) ? article : latest;
     }):null;
     state.latestArticle = latestArticle;
+    },
+    findArticleById:(state,action:PayloadAction<number>)=>{
+      const filteredArticleById = state.data?.find(article=>article.id===action.payload);
+      state.filteredArticleById = filteredArticleById?filteredArticleById:null;
     }
   },
   extraReducers(builder){
@@ -73,6 +79,6 @@ export const articleSlice = createSlice({
   }
 })
 
-export const {filteredBySection, findLatestArticle} = articleSlice.actions;
+export const {filteredBySection, findLatestArticle,findArticleById} = articleSlice.actions;
 
 export default articleSlice.reducer

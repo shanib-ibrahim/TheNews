@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Article } from "../interfaces/Article";
 
 const LatestArticle = ({ latestNews }: { latestNews: Article }) => {
@@ -21,14 +22,12 @@ const LatestArticle = ({ latestNews }: { latestNews: Article }) => {
             {latestNews.title}
           </h2>
           <p className="text-gray-600 mb-4">{latestNews.abstract}</p>
-          <a
-            href={latestNews.url}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to={`/details/${latestNews.id}`}
             className="inline-block bg-blue-500 hover:bg-black text-white font-semibold px-4 py-2 rounded"
           >
             Read More
-          </a>
+          </Link>
         </div>
       </div>
     </section>

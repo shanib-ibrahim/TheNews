@@ -1,46 +1,15 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { MobileNav } from "./common/MobileNav";
 import Nav from "./common/Nav";
-import { useEffect, useState } from "react";
 
-const Header = ({ header }: { header: boolean }) => {
-  const location = useLocation();
-  const [activeSection, setActiveSection] = useState<string>("");
-
-  useEffect(() => {
-    const handScroll = () => {
-      const sections = document.querySelectorAll("section[id]");
-      let currentSection = "";
-      sections.forEach((section) => {
-        const sectionElement = section as HTMLElement;
-        const sectionTop = sectionElement.offsetTop;
-        if (window.scrollY >= sectionTop - 220) {
-          currentSection = section.getAttribute("id") || "";
-        }
-      });
-      setActiveSection(currentSection);
-    };
-    handScroll();
-    window.addEventListener("scroll", handScroll);
-    return () => window.removeEventListener("scroll", handScroll);
-  }, []);
-
-  useEffect(() => {
-    if (location.hash) {
-      const element = document.querySelector(location.hash);
-      if (element) {
-        const offset = 150; // Adjust this value as per your layout
-        const elementPosition =
-          element.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - offset,
-          behavior: "smooth",
-        });
-      }
-    }
-  }, [location]);
-
+const Header = ({
+  header,
+  activeSection,
+}: {
+  header: boolean;
+  activeSection: string;
+}) => {
   return (
     <header
       className={`${
@@ -60,7 +29,7 @@ const Header = ({ header }: { header: boolean }) => {
           />
 
           <div className={`flex items-center gap-x-2 xl:hidden  `}>
-            <MobileNav />
+            <MobileNav activeSection={activeSection} />
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { Article } from "../../interfaces/Article";
+import { Link } from "react-router-dom";
 
 export function CardDefault({ item }: { item: Article }) {
   return (
@@ -24,6 +25,7 @@ export function CardDefault({ item }: { item: Article }) {
         onPointerLeaveCapture={undefined}
       >
         <img
+          className="w-full h-full"
           src={
             item?.media.length ? item.media[0]["media-metadata"][2]?.url : ""
           }
@@ -69,7 +71,7 @@ export function CardDefault({ item }: { item: Article }) {
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
       >
-        <a href={item.url} className="inline-block ">
+        <Link to={`/details/${item.id}`} className="inline-block ">
           <Button
             placeholder={undefined}
             onPointerEnterCapture={undefined}
@@ -77,7 +79,7 @@ export function CardDefault({ item }: { item: Article }) {
           >
             Read More
           </Button>
-        </a>
+        </Link>
       </CardFooter>
     </Card>
   );

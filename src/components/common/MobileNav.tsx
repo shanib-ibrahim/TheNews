@@ -11,7 +11,7 @@ import { AlignJustify } from "lucide-react";
 import { useAppSelector } from "../../redux/hooks";
 import { Link, useLocation } from "react-router-dom";
 
-export function MobileNav() {
+export function MobileNav({ activeSection }: { activeSection: string }) {
   const [open, setOpen] = React.useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -83,7 +83,8 @@ export function MobileNav() {
             >
               <Link
                 className={`uppercase  ${
-                  location.hash === link.path.replace(/[/ .]/g, "")
+                  link.path.replace(/[ .]/g, "") === `/#${activeSection}` ||
+                  location.hash === link.path.replace(/[ .]/g, "")
                     ? "text-primary"
                     : ""
                 }`}
