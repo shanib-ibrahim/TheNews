@@ -6,7 +6,7 @@ interface ArticleProps {
 
 const ArticleDetails: React.FC<ArticleProps> = ({ article }) => {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 mb-[4rem]">
       <div className="max-w-4xl mx-auto  rounded-lg overflow-hidden">
         <div className="p-4">
           <h1 className="text-3xl font-bold mb-2">{article.title}</h1>
