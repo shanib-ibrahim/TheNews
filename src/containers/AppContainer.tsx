@@ -11,8 +11,6 @@ const AppContainer = () => {
   const articles = useAppSelector((state) => state.article.data);
   const loading = useAppSelector((state) => state.article.loading);
 
-  console.log("Article data", articles);
-
   useEffect(() => {
     dispatch(getArticles());
   }, []);
