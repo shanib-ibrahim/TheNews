@@ -11,7 +11,11 @@ import { AlignJustify } from "lucide-react";
 import { useAppSelector } from "../../redux/hooks";
 import { Link, useLocation } from "react-router-dom";
 
-export function MobileNav({ activeSection }: { activeSection: string }) {
+interface MobileNavProps {
+  activeSection?: string;
+}
+
+export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
   const [open, setOpen] = React.useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -99,4 +103,4 @@ export function MobileNav({ activeSection }: { activeSection: string }) {
       </Drawer>
     </React.Fragment>
   );
-}
+};
