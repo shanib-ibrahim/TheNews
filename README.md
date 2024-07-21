@@ -203,7 +203,7 @@ npm install --save-dev ts-jest ts-node
    npm install -D ts-jest-mock-import-meta
   ```
 
-- Change the transform to mock import.meta of vite
+- Change the transform to mock import.meta of vite and please replace the API_KEY and API_URL with respective values.
 
   ```
       "transform": {
@@ -220,8 +220,8 @@ npm install --save-dev ts-jest ts-node
                "options": {
                  "metaObjectReplacement": {
                    "env": {
-                     "VITE_API_KEY" : "Ans8TEg1V3AAOraiyV9q29cWicj2G82b",
-                     "VITE_API_URL" : "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key="
+                     "VITE_API_KEY" : "API_KEY",
+                     "VITE_API_URL" : "API_URL"
                    }
                  }
                }
