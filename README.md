@@ -193,8 +193,8 @@ npm install --save-dev ts-jest ts-node
 
 - Error Message
 
-  ```error TS1343: The 'import.meta' meta-property is only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', or 'nodenext'.
-
+  ```
+  error TS1343: The 'import.meta' meta-property is only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', or 'nodenext'.
   ```
 
 - Install dependancy
