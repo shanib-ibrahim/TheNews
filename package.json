@@ -91,8 +91,8 @@
                 "options": {
                   "metaObjectReplacement": {
                     "env": {                      
-                      "VITE_API_KEY" : "Ans8TEg1V3AAOraiyV9q29cWicj2G82b",
-                      "VITE_API_URL" : "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key="
+                       "VITE_API_KEY" : "API_KEY",
+                       "VITE_API_URL" : "API_URL"
                     }
                   }
                 }
