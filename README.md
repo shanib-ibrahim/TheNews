@@ -24,17 +24,14 @@ You need to signup for an API key at: https://developer.nytimes.com/get-started,
 
 ## Running the App
 
-Now that you have set up Auth0 and configured your environment variables, you can run the React app using the following commands:
+Now that you have set up NY Times Articles API and configured your environment variables, you can run the React app using the following commands:
 
 ```bash
 # Install dependencies
 npm install
 
 # Start the development server
-npm start
+npm run dev
 ```
 
-This will start the back-end process at `http://localhost:3000`. If port 3000 is in use on your machine, update the port number in the following files and run `npm start` again:
-
-- json-server.json
-- src/main.tsx
+This will start the application on the default port of vite `http://localhost:5173`:
